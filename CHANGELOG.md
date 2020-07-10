@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 1.2.1 (2020-07-09)
+
 - Support for setting timezone in queries to configure influx time calculations, e.g., time epoch aggregation ([@jklimke][])
 
   [PR](https://github.com/palkan/influxer/pull/46)
@@ -28,11 +30,11 @@
 
 ## 1.1.4
 
-- [Fixes [#35](https://github.com/palkan/influxer/issues/35)] Support time duration suffix and handle `'s'` and `'ms'` precisions. ([@palkan][])
+- [Fixes [#35](https://github.com/palkan/influxer/issues/35)] Support time duration suffix and handle `'s'` and `'ms'` precision. ([@palkan][])
 
   [PR](https://github.com/palkan/influxer/pull/36)
 
-  **BREAKING:** `Time`-like value are only typecasted for `time` key.
+  **BREAKING:** `Time`-like value are only type-casted for `time` key.
 
 ## 1.1.2
 
@@ -82,54 +84,7 @@ end
 
 - Fix missing `#delegate` in ActiveRecord 3.2
 
-## 0.5.4
-- Add `set_retention_policy` method
-
-## 0.5.3
-- Fix `where.not` with ranges typo
-
-## 0.5.2
-- Fix bug with query logging
-
-## 0.5.1
-- Fix whitespace around operators
-- Add `Relation#from` method to redefine series
-- Handle nil values for tags in #where clause
-
-## 0.5.0
-- Update `timestamp` support
-- Add `epoch` method
-
-## 0.4.0
-- Rename default `time` attribute to `timestamp`
-
-## 0.2.3
-- Parse fanout queries points to handle _fanouted_ values
-- Add Rubocop config and cleanup code style
-
-## 0.1.1
-- Add [anyway_config](https://github.com/palkan/anyway_config)
-- Add `empty?` method
-
-## 0.1.0
-- Add logs
-- Add `foreign_key` param to `has_metrics` options
-
-## 0.1.0-rc
-- Fix `Relation#to_a` (now returns array of points correctrly)
-- Fix fanout queries with array args (now use `merge(Regexp)`)
-
-## 0.1.0-alpha
-- Add `time` method to Relation to group by time with constants (`:hour`, `:day`, etc) and fill support
-- Series names now properly quoted with double-quotes
-- Using regexps, ranges and arrays within `where` clause
-- `where.not(...)` support
-- Add `past` and `since` methods
-- Add `merge` method and support for regexp series
-- Add `delete_all` support
-- Add cache support (using `Rails.cache`)
-- Scopes (default and named)
-- Support for fanout series
+See [changelog](https://github.com/palkan/influxer/blob/1.0.0/Changelog.md) for earlier versions.
 
 [@palkan]: https://github.com/palkan
 [@MPursche]: https://github.com/MPursche
