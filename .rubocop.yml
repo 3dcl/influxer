@@ -1,77 +1,38 @@
+require:
+  - standard/cop/semantic_blocks
+  - rubocop-md
+
+inherit_gem:
+  standard: config/base.yml
+
 AllCops:
-  # Include gemspec and Rakefile
-  Include:
-    - 'lib/**/*.rb'
-    - 'lib/**/*.rake'
-    - 'spec/**/*.rb'
   Exclude:
-    - 'bin/**/*'
-    - 'spec/dummy/**/*'
+    - 'bin/*'
+    - 'tmp/**/*'
+    - 'docs/**/*'
+    - 'Gemfile'
     - 'vendor/**/*'
-    - 'gemfiles/vendor/**/*'
-    - Gemfile
-    - Rakefile
+    - 'gemfiles/**/*'
   DisplayCopNames: true
-  StyleGuideCopsOnly: false
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
-Rails:
+Standard/SemanticBlocks:
   Enabled: false
 
-Style/SymbolArray:
-  Enabled: false
-
-Style/SafeNavigation:
-  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: true
 
 Naming/AccessorMethodName:
   Enabled: false
 
-Style/TrivialAccessors:
-  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: no_comma
 
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*.rb'
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: no_comma
 
-Style/StringLiterals: 
-  Enabled: false
+Layout/ParameterAlignment:
+  EnforcedStyle: with_first_parameter
 
-Style/DateTime:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Naming/SpaceInsideStringInterpolation:
-  EnforcedStyle: no_space
-
-Style/BlockDelimiters:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Lint/MissingCopEnableDirective:
-  Enabled: false
-
-Lint/AmbiguousRegexpLiteral:
-  Enabled: false
-
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Metrics/MethodLength:
-  Exclude:
-    - 'spec/**/*.rb'
-
-Metrics/LineLength:
-  Max: 100
-  Exclude:
-    - 'spec/**/*.rb'
-
-Rails/Date:
-  Enabled: false
-
-Rails/TimeZone:
-  Enabled: false
-
-Gemspec/OrderedDependencies:
-  Enabled: false
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_first_argument
