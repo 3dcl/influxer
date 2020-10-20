@@ -30,11 +30,13 @@ module Influxer
                 :async,
                 database: "db",
                 time_precision: "ns",
-                cache: false,
+                cache: {enabled: false},
                 time_duration_suffix_enabled: false
 
     def load(*)
       super
+      # convert the cache parameter to false if the parameter was a hash and had a enabled key
+      @cache = false if(@cache.is_a?(Hash) && @cache[:enabled] == false)      
       # we want pass @cache value as options to cache store, so we want it to be a Hash
       @cache = {}.with_indifferent_access if @cache == true
     end
