@@ -6,6 +6,7 @@ module Influxer
   class Client
     def query(sql, options = {})
       log_sql(sql) do
+
         if !options.fetch(:cache, true) || Influxer.config.cache_enabled == false
           super(sql, **options)
         else
