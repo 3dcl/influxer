@@ -76,20 +76,20 @@ module Influxer
     # Accepts DateTime objects.
     
     def since_including(val)
-      where("time >= #{quoted(val, @client)}")
+      where("time >= #{quoted(val), 'time'}")
     end
 
     # Shortcut to define end point of the time interval excluding the time provided.
     # Accepts DateTime objects.
     
     def before(val)
-      where("time < #{quoted(val, @client)}")
+      where("time < #{quoted(val), 'time'}")
     end
 
     # Shortcut to define end point of the time interval including the time provided.
     # Accepts DateTime objects.
     def before_including(val)
-      where("time <= #{quoted(val, @client)}")
+      where("time <= #{quoted(val), 'time'}")
     end
 
     private
