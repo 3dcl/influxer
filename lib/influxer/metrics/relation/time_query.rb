@@ -72,6 +72,26 @@ module Influxer
       where("time > #{val.to_i}s")
     end
 
+    # Shortcut to define start point of the time interval including the time provided.
+    # Accepts DateTime objects.
+    
+    def since_including(val)
+      where("time >= #{quote_timestamp(val, @client)}")
+    end
+
+    # Shortcut to define end point of the time interval excluding the time provided.
+    # Accepts DateTime objects.
+    
+    def before(val)
+      where("time < #{quote_timestamp(val, @client)}")
+    end
+
+    # Shortcut to define end point of the time interval including the time provided.
+    # Accepts DateTime objects.
+    def before_including(val)
+      where("time <= #{quote_timestamp(val, @client)}")
+    end
+
     private
 
     def build_fill(val)
