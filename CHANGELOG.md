@@ -2,6 +2,9 @@
 
 ## master (unreleased)
 
+- Upgraded Ruby and Rails version to Ruby 2.7.6 and Rails 6
+- added support for providing hash objects as arguments to where condition in ruby >= 3
+
 ## 1.4.0 (2022-01-24)
 
 - Fixes [#55](https://github.com/palkan/influxer/issues/55) Rails 7 deprecation warning
@@ -15,7 +18,7 @@
 
 ## 1.2.2 (2020-10-27)
 
-- Fixes [#49](https://github.com/palkan/influxer/issues/49)  Cache hash configuration cannot be applied.([@AlexanderShvaykin][])
+- Fixes [#49](https://github.com/palkan/influxer/issues/49) Cache hash configuration cannot be applied.([@AlexanderShvaykin][])
 - Fixes [#47](https://github.com/palkan/influxer/issues/47) Can't delete data when retention policy is set for a metric. ([@MPursche][])
 
 ## 1.2.1 (2020-07-09)
@@ -103,7 +106,7 @@ end
 See [changelog](https://github.com/palkan/influxer/blob/1.0.0/Changelog.md) for earlier versions.
 
 [@palkan]: https://github.com/palkan
-[@MPursche]: https://github.com/MPursche
+[@mpursche]: https://github.com/MPursche
 [@jklimke]: https://github.com/jklimke
 [@dimiii]: https://github.com/dimiii
-[@AlexanderShvaykin]: https://github.com/AlexanderShvaykin
+[@alexandershvaykin]: https://github.com/AlexanderShvaykin
