@@ -103,7 +103,7 @@ module Influxer
         else
           [val.end.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} <= #{quoted(val.end, key)}"].compact.join(" and ")
         end
-      end
+      end.compact
     end
     # rubocop: enable Metrics/AbcSize, Metrics/MethodLength, Style/IfInsideElse
 
