@@ -36,8 +36,14 @@ module Influxer
     protected
 
     def build_where(args, hargs, negate)
-      if args.present? && args[0].is_a?(String)
-        where_values.concat(args.map { |str| "(#{str})" })
+      if args.present?
+        if args[0].is_a?(String)
+          where_values.concat(args.map { |str| "(#{str})" })
+        elsif args[0].is_a?(Hash)
+          build_hash_where(args[0], negate)
+        else
+          false
+        end
       elsif hargs.present?
         build_hash_where(hargs, negate)
       else
@@ -83,18 +89,19 @@ module Influxer
     # rubocop: disable Metrics/AbcSize, Metrics/MethodLength, Style/IfInsideElse
     def build_range(key, val, negate)
       if val.exclude_end?
+
         # begin...end range
         if negate
-          "#{key} < #{quoted(val.begin, key)} or #{key} >= #{quoted(val.end, key)}"
+          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} >= #{quoted(val.end, key)}"].compact.join(" or ")
         else
-          "#{key} >= #{quoted(val.begin, key)} and #{key} < #{quoted(val.end, key)}"
+          [val.begin.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} < #{quoted(val.end, key)}"].compact.join(" and ")
         end
       else
         # begin..end range
         if negate
-          "#{key} < #{quoted(val.begin, key)} or #{key} > #{quoted(val.end, key)}"
+          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} > #{quoted(val.end, key)}"].compact.join(" or ")
         else
-          "#{key} >= #{quoted(val.begin, key)} and #{key} <= #{quoted(val.end, key)}"
+          [val.begin.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} <= #{quoted(val.end, key)}"].compact.join(" and ")
         end
       end
     end
