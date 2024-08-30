@@ -101,7 +101,7 @@ module Influxer
         if negate
           [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} > #{quoted(val.end, key)}" ].compact.join(" or ")
         else
-          [val.end.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil "#{key} <= #{quoted(val.end, key)}"].compact.join(" and ")
+          [val.end.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} <= #{quoted(val.end, key)}"].compact.join(" and ")
         end
       end
     end
