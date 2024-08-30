@@ -89,17 +89,17 @@ module Influxer
     # rubocop: disable Metrics/AbcSize, Metrics/MethodLength, Style/IfInsideElse
     def build_range(key, val, negate)
       if val.exclude_end?
-        
+
         # begin...end range
         if negate
-          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} > #{quoted(val.end, key)}"].compact.join(" or ")
+          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} >= #{quoted(val.end, key)}"].compact.join(" or ")
         else
-          [val.begin.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} < #{quoted(val.end, key)}"].compact.join(" and ")          
+          [val.begin.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} < #{quoted(val.end, key)}"].compact.join(" and ")
         end
       else
         # begin..end range
         if negate
-          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} > #{quoted(val.end, key)}" ].compact.join(" or ")
+          [val.begin.nil? ? nil : "#{key} < #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} > #{quoted(val.end, key)}"].compact.join(" or ")
         else
           [val.begin.nil? ? nil : "#{key} >= #{quoted(val.begin, key)}", val.end.nil? ? nil : "#{key} <= #{quoted(val.end, key)}"].compact.join(" and ")
         end

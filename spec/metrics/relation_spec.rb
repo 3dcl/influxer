@@ -110,22 +110,20 @@ describe Influxer::Relation, :query do
         expect(rel.where(user_id: 1...4).to_sql).to eq "select * from \"dummy\" where (user_id >= 1 and user_id < 4)"
       end
 
-
       it "handle inclusive endless range" do
-        expect(rel.where(user_id: 1..).to_sql).to eq "select * from \"dummy\" where (user_id >= 1)"
+        expect(rel.where(user_id: 1..nil).to_sql).to eq "select * from \"dummy\" where (user_id >= 1)"
       end
 
       it "handle inclusive beginless open range" do
-        expect(rel.where(user_id: ..4).to_sql).to eq "select * from \"dummy\" where (user_id <= 4)"
+        expect(rel.where(user_id: nil..4).to_sql).to eq "select * from \"dummy\" where (user_id <= 4)"
       end
-
 
       it "handle exclusive endless range" do
-        expect(rel.where(user_id: 1...).to_sql).to eq "select * from \"dummy\" where (user_id > 1)"
+        expect(rel.where(user_id: 1...nil).to_sql).to eq "select * from \"dummy\" where (user_id >= 1)"
       end
 
-      it "handle exxclusive beginless open range" do
-        expect(rel.where(user_id: ...4).to_sql).to eq "select * from \"dummy\" where (user_id < 4)"
+      it "handle exclusive beginless open range" do
+        expect(rel.where(user_id: nil...4).to_sql).to eq "select * from \"dummy\" where (user_id < 4)"
       end
 
       it "handle arrays" do
